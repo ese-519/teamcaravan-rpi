@@ -64,11 +64,26 @@ int main(int ac, char** av) {
 	unsigned char *p_tx_buffer;
 	
 	p_tx_buffer = &tx_buffer[0];
-	*p_tx_buffer++ = 'a';
-	*p_tx_buffer++ = 'b';
-	*p_tx_buffer++ = 'c';
-	*p_tx_buffer++ = 'd';
-	*p_tx_buffer++ = 'e';
+	*p_tx_buffer = 'a';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'b';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'c';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'd';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'e';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'a';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'b';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'c';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'd';
+	*p_tx_buffer++;
+	*p_tx_buffer = 'e';
+	*p_tx_buffer++;
 	
 	if (uart0_filestream != -1)
 	{

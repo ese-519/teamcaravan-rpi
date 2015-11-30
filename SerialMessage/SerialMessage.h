@@ -10,6 +10,10 @@
 #define TURN_MSG 6
 #define FWD_MSG 7
 #define BWD_MSG 8
+#define BRK_MSG 9
+
+#define DIR_LEFT 1
+#define DIR_RIGHT 2
 
 #define RPI_SERIAL Serial2
 
@@ -21,6 +25,6 @@ unsigned char i_to_c(int i);
 
 int s_to_i(unsigned char* s, int l);
 
-void make_packet(unsigned char *buf, const char *msg, int len);
+void make_packet(char *buf, const char *msg, int len);
 
 #endif

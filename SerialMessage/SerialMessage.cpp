@@ -26,7 +26,7 @@ int s_to_i(unsigned char* s, int l) {
 	return res;
 }
 
-void make_packet(unsigned char *buf, const unsigned char *msg, int len) {
+void make_packet(char *buf, const char *msg, int len) {
   buf[0] = PACKET_START;
   buf[PACKET_SIZE-1] = PACKET_END;
 
