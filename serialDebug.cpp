@@ -27,6 +27,16 @@ void send_command(int type, unsigned char *b, int len) {
 	sendPiSerial(tx_buf, PACKET_SIZE+1);
 }
 
+void send_info(int info, float vel) {
+	unsigned char b[4];
+	b[0] = info;
+	b[1] = vel < 10 ? 0 : ((int)vel)/10;
+	b[2] = ((int)vel)%10;
+	b[3] = vel-(int)vel;
+
+	send_command(INFO_MSG, b, 4);
+}
+
 void send_command(int type, float vel) {
 	unsigned char b[4];
 	int off = type == TURN_MSG ? 1 : 0;
@@ -77,13 +87,21 @@ int main(int ac, char** av) {
 
 	// usleep(1000000);
 
-	// send_command(BRK_MSG);
+	send_command(BRK_MSG);
+	usleep(100000);
+	send_info(INFO_OBS, 4.0);
+	// send_info(INFO_HLWY, 4.0);
+	send_info(INFO_HAZ_RNG, 1.9);
+	usleep(2000000);
+	// send_info(INFO_WALL_RNG, 1.0);
 
 	while (true) {
 
 		// sleep 100ms to avoid overflowing UART buffer
 		usleep(100000);
-		send_command(FWD_MSG, 2.0);
+		send_command(FWD_MSG, 1.1);
+
+
 
 		int r_len = readPiSerial(rx_buf, PACKET_SIZE);
 		if (r_len > 0) {

@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "hemo_webpy")
+set(hemo_webpy_MAINTAINER "ubuntu <ubuntu@todo.todo>")
+set(hemo_webpy_DEPRECATED "")
+set(hemo_webpy_VERSION "0.0.0")
+set(hemo_webpy_BUILD_DEPENDS "rospy" "std_msgs")
+set(hemo_webpy_RUN_DEPENDS "rospy" "std_msgs")
+set(hemo_webpy_BUILDTOOL_DEPENDS "catkin")
