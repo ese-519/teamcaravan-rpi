@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/hemo_code/new_code/wksp/install
+
+Name: main
+Description: Description of main
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ubuntu/hemo_code/new_code/wksp/install/lib 
+Requires: 

@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "main")
+set(main_MAINTAINER "ubuntu <ubuntu@todo.todo>")
+set(main_DEPRECATED "")
+set(main_VERSION "0.0.0")
+set(main_BUILD_DEPENDS "rospy" "std_msgs")
+set(main_RUN_DEPENDS "rospy" "std_msgs")
+set(main_BUILDTOOL_DEPENDS "catkin")
