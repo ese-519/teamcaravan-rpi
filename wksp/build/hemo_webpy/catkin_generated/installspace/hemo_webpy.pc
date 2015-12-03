@@ -1,8 +1,8 @@
-prefix=/home/ubuntu/code_edison/new_code/wksp/install
+prefix=/home/ubuntu/hemo_code/new_code/wksp/install
 
 Name: hemo_webpy
 Description: Description of hemo_webpy
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/ubuntu/code_edison/new_code/wksp/install/lib 
+Libs: -L/home/ubuntu/hemo_code/new_code/wksp/install/lib 
 Requires: 

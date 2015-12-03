@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/code_edison/new_code/wksp/src
+CMAKE_SOURCE_DIR = /home/ubuntu/hemo_code/new_code/wksp/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/code_edison/new_code/wksp/build
+CMAKE_BINARY_DIR = /home/ubuntu/hemo_code/new_code/wksp/build
 
 # Utility rule file for doxygen.
 
@@ -60,6 +60,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/ubuntu/code_edison/new_code/wksp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/code_edison/new_code/wksp/src /home/ubuntu/code_edison/new_code/wksp/src /home/ubuntu/code_edison/new_code/wksp/build /home/ubuntu/code_edison/new_code/wksp/build /home/ubuntu/code_edison/new_code/wksp/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ubuntu/hemo_code/new_code/wksp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/hemo_code/new_code/wksp/src /home/ubuntu/hemo_code/new_code/wksp/src /home/ubuntu/hemo_code/new_code/wksp/build /home/ubuntu/hemo_code/new_code/wksp/build /home/ubuntu/hemo_code/new_code/wksp/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

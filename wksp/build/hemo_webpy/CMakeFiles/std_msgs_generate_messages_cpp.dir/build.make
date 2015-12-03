@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/code_edison/new_code/wksp/src
+CMAKE_SOURCE_DIR = /home/ubuntu/hemo_code/new_code/wksp/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/code_edison/new_code/wksp/build
+CMAKE_BINARY_DIR = /home/ubuntu/hemo_code/new_code/wksp/build
 
 # Utility rule file for std_msgs_generate_messages_cpp.
 
@@ -56,10 +56,10 @@ hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/build: std_msgs_generat
 .PHONY : hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 
 hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	cd /home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 
 hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend:
-	cd /home/ubuntu/code_edison/new_code/wksp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/code_edison/new_code/wksp/src /home/ubuntu/code_edison/new_code/wksp/src/hemo_webpy /home/ubuntu/code_edison/new_code/wksp/build /home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy /home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ubuntu/hemo_code/new_code/wksp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/hemo_code/new_code/wksp/src /home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy /home/ubuntu/hemo_code/new_code/wksp/build /home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy /home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : hemo_webpy/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
 

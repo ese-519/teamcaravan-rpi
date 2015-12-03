@@ -1,1 +1,1 @@
-/usr/bin/c++  -fPIC    -shared -Wl,-soname,libgtest.so -o libgtest.so CMakeFiles/gtest.dir/src/gtest-all.cc.o  -L/home/ubuntu/code_edison/new_code/wksp/build/gtest/src -lpthread -Wl,-rpath,/home/ubuntu/code_edison/new_code/wksp/build/gtest/src 
+/usr/bin/c++  -fPIC    -shared -Wl,-soname,libgtest.so -o libgtest.so CMakeFiles/gtest.dir/src/gtest-all.cc.o  -L/home/ubuntu/hemo_code/new_code/wksp/build/gtest/src -lpthread -Wl,-rpath,/home/ubuntu/hemo_code/new_code/wksp/build/gtest/src 

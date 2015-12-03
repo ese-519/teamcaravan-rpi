@@ -1,8 +1,8 @@
-# Install script for directory: /home/ubuntu/code_edison/new_code/wksp/src/hemo_webpy
+# Install script for directory: /home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/ubuntu/code_edison/new_code/wksp/install")
+  SET(CMAKE_INSTALL_PREFIX "/home/ubuntu/hemo_code/new_code/wksp/install")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpy.pc")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpy.pc")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hemo_webpy/cmake" TYPE FILE FILES
-    "/home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpyConfig.cmake"
-    "/home/ubuntu/code_edison/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpyConfig-version.cmake"
+    "/home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpyConfig.cmake"
+    "/home/ubuntu/hemo_code/new_code/wksp/build/hemo_webpy/catkin_generated/installspace/hemo_webpyConfig-version.cmake"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hemo_webpy" TYPE FILE FILES "/home/ubuntu/code_edison/new_code/wksp/src/hemo_webpy/package.xml")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hemo_webpy" TYPE FILE FILES "/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/package.xml")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
