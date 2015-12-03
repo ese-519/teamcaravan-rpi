@@ -2,12 +2,35 @@ from PIL import Image
 from PIL import ImageDraw
 import os.path
 import math
+from hemo_serial import *
 
 def rectangle_contains(p1, p2, p_test):
     in_x = (p1[0] <= p_test[0] and p_test[0] <= p2[0]) or (p1[0] >= p_test[0] and p_test[0] >= p2[0])
     in_y = (p1[1] <= p_test[1] and p_test[1] <= p2[1]) or (p1[1] >= p_test[1] and p_test[1] >= p2[1])
     
     return in_x and in_y 
+
+class Path:
+
+    def __str__(self):
+        if self.ccw:
+          res = "CCW: " + str(self.dest) + "\n"
+        else:
+          res = "CW: " + str(self.dest) + "\n"
+        for t in self.turns:
+          res += "\t" + str(t) + "\n"
+        return res
+
+    def __init__(self, d, turns=[]):
+        self.dest = d
+        self.turns = turns
+        self.ccw = True
+
+    def addTurn(self, t):
+        self.turns.append(t)
+
+    def prependTurn(self, t):
+        self.turns.prepend(t)
 
 class hallway:
     def __init__(self, s_id, length, ang = 0, e_n=[], e_p=[]):
@@ -55,6 +78,40 @@ class Map:
         self.prog = 0
         self.forward = True
         self.readMap(path)
+
+    def findPath(self, dest):
+        p = Path(dest)
+        p.turns = []
+        p.dest = dest
+        h_start = self.start
+        h_dest = self.getHallway(dest)
+
+        h_end = self.getHallway(len(self.hallways))
+
+        if True:#(h_dest.s_id-h_start.s_id <= len(self.hallways)/2):
+          # go CCW
+          i = h_start.s_id
+          while i < h_end.s_id: 
+            h = self.getHallway(i)
+            n = self.getHallway(i+1)
+            p.addTurn([h.length, n.angle])
+            i += 1
+
+          # add turn back to start
+          p.addTurn([self.start.length, self.start.angle])
+
+        else:
+          p.ccw = False
+          i = h_start.s_id
+          while i != h_dest.s_id: 
+            h = self.getHallway(i)
+            i -= 1
+            if (i == 0):
+              i = len(self.hallways)
+            n = self.getHallway(i)
+            p.addTurn([h.length, n.angle])
+
+        return p
         
     def addStart(self, start, off=0):
         self.start = start
@@ -105,6 +162,8 @@ class Map:
               self.addHallway(h)
             e_n = []
             e_p = []
+
+      self.getBound()
             
     def hallwayLen(self, id):
         for h in self.hallways:
@@ -147,7 +206,26 @@ class Map:
       
       im.save(path, "JPEG")
       
-         
-    
-#m = Map("levine.mp")
+m = Map("levine.mp")
+
+global curLoc, curDeg
+curLoc = m.start.s_id
+curDeg = m.start.angle
+
+def parsePath(p, m):
+  global curLoc, curDeg
+
+  for t in p.turns:
+      curLoc += 1
+      if (curLoc > len(m.hallways)):
+        curLoc = 1
+      moveForward(t[0])
+      turnLeft(t[1] - curDeg)
+      curDeg = t[1]
+      if (curLoc == p.dest):
+        brake()
+
+# parsePath(m.findPath(2), m)
+# parsePath(m.findPath(3), m)
+# parsePath(m.findPath(4), m)
 #m.createImage("levine.jpg")

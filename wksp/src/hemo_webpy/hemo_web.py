@@ -4,6 +4,7 @@ from std_msgs.msg import String
 import web
 from hemo_map import *
 import os
+import json
 
 rootPath = '/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/'
 contentPath = rootPath + 'static/'
@@ -15,7 +16,8 @@ urls = (
 
 ### Templates
 t_globals = {
-    'datestr': web.datestr
+    'datestr': web.datestr,
+    'json_encode': json.dumps
 }
 render = web.template.render(rootPath + 'templates', base='base', globals=t_globals)
 
@@ -26,7 +28,9 @@ m = Map("levine.mp")
 class Index:
   def GET(self):
       """ Show page """  
-      return render.index("levine.jpg")
+      #return render.index(m)
+      s = '\"\{ x1: 0, y1: 0, x2: 100, y2:100 \}\"'
+      return render.index(s)
 
 class Images:
     def GET(self,name):

@@ -1,5 +1,26 @@
-$def with (mapfile)
+$def with (mapObj)
 
-<h1>HemoGlobeTrotter</h1>
+<h1>$mapObj</h1>
 
-<img src="/static/levine.jpg" alt="pic">
+<!--<img src="/static/levine.jpg" alt="pic">0-->
+
+<canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var obj = JSON.parse($mapObj);
+console.log(obj);
+
+drawLine(obj.x1, obj.y1, obj.x2, obj.y2);
+
+function drawLine(x1, y1, x2, y2) {
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
+
+</script>
