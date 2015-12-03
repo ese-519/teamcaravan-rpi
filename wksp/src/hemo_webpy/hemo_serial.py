@@ -35,10 +35,10 @@ def sendPiSerial(buf):
 
 def send_command_with_data(msg_type, b):
 	global globes
-	tx_buf = '0' * globes.PACKET_SIZE
+	tx_buf = ['0'] * (globes.PACKET_SIZE + 1)
 	tx_buf[0] = globes.PACKET_START
 	tx_buf[1] = msg_type
-	for i in range(2, globes.PACKET_SIZE -1):
+	for i in range(2, globes.PACKET_SIZE - 1):
 		if (i-2 < len(b)):
 			tx_buf[i] = b[i-2]
 		else:
@@ -52,23 +52,23 @@ def send_info(info, vel):
 	global globes
 	b = None * 4
 	b[0] = info
-	b[1] = '0' if vel < 10 else chr(int(vel)/10)
-	b[2] = chr(int(vel)%10)
-	b[3] = chr(vel-int(vel))
+	b[1] = '0' if vel < 10 else chr(int(vel)/10 + 48)
+	b[2] = chr(int(vel)%10 + 48)
+	b[3] = chr(vel-int(vel) + 48)
 
 	send_command_with_data(globes.INFO_MSG, b)
 
-def send_command(msg_type, vel=None):
+def send_command(msg_type, vel=0):
 	global globes
-	b = None * 4
+	b = ['0'] * 4
 
-	if vel == None:
+	if vel == 0:
 		send_command_with_data(msg_type, b)
 
 	off = 1 if msg_type == globes.TURN_MSG else 0
 	if (msg_type == globes.TURN_MSG):
 		if (vel < 0):
-			vel = -vel
+			vel = -1 * vel
 			drive_dir = globes.DIR_LEFT
 		else:
 			drive_dir = globes.DIR_RIGHT
@@ -77,49 +77,57 @@ def send_command(msg_type, vel=None):
 		b[3] = '0'
 
 	if (vel < 0):
-		vel = -vel
+		vel = -1 * vel
 
-	b[0+off] = chr(int(vel)/10)
-	b[1+off] = chr(int(vel)%10)
-	b[2+off] = chr(vel-int(vel))
-
-def send_command(msg_type):
-	send_command(msg_type, '', 0);
+	b[0+off] = chr(int(vel)/10 + 48)
+	b[1+off] = chr(int(vel)%10 + 48)
+	b[2+off] = chr(vel-int(vel) + 48)
+	send_command_with_data(msg_type, b)	
 
 def moveForward(dist):
-	global ser
+	global globes
+	send_command(globes.FWD_MSG, dist)
 	print "Move Forward: ", dist
 
 def moveBack(dist):
-	global ser
+	global globes
+	send_command(globes.BWD_MSG, dist)
 	print "Move Back: ", dist
 
 def turnLeft(deg):
-	global ser
+	global globes
+	
 	if (deg < 0):
 		deg = (deg + 360)%360
+	
+	send_command(globes.TURN_MSG, -1 * deg)
 	print "Turn Left: ", deg
 
 def turnRight(deg):
-	global ser
+	global globes
 	if (deg < 0):
 		deg = (deg + 360)%360
+	
+	send_command(globes.TURN_MSG, deg)
 	print "Turn Right: ", deg
 
 def brake():
-	global ser
+	global globes
+	send_command(globes.BRK_MSG)
 	print "Brake"
 
-while (True):
-	# data = ser.read()
-	# print data
 
-	# 68656c6c6f
-	# key = ''.join(chr(x) for x in [0x68, 0x65, 0x6c, 0x6c, 0x6f])
-	key = ''.join(x for x in ['h', 'e', 'l', 'l', 'o'])
-	# print key
-	ser.write(key)
-	if (ser.inWaiting() > 0):
-		data = ser.read()
-		print data
-	# ser.write(data)
+
+# while (True):
+# 	# data = ser.read()
+# 	# print data
+
+# 	# 68656c6c6f
+# 	# key = ''.join(chr(x) for x in [0x68, 0x65, 0x6c, 0x6c, 0x6f])
+# 	key = ''.join(x for x in ['h', 'e', 'l', 'l', 'o'])
+# 	# print key
+# 	ser.write(key)
+# 	if (ser.inWaiting() > 0):
+# 		data = ser.read()
+# 		print data
+# 	# ser.write(data)

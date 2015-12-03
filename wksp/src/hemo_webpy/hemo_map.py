@@ -225,7 +225,7 @@ def parsePath(p, m):
       if (curLoc == p.dest):
         brake()
 
-# parsePath(m.findPath(2), m)
+parsePath(m.findPath(2), m)
 # parsePath(m.findPath(3), m)
 # parsePath(m.findPath(4), m)
 #m.createImage("levine.jpg")
