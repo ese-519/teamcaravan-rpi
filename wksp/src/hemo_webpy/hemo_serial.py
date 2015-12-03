@@ -1,7 +1,12 @@
 import serial
 global ser
+
+import time
+
 ser = serial.Serial ("/dev/ttyAMA0")    #Open named port 
 ser.baudrate = 115200                     #Set baud rate to 9600
+ser.flushOutput()
+ser.flushInput()
 # ser.close()
 # def makePacket(dir):
 
@@ -24,9 +29,6 @@ class Global:
 		
 		self.DIR_LEFT = '1'
 		self.DIR_RIGHT = '2'
-
-global globes
-globes = Global()
 
 def sendPiSerial(buf):
 	global globes
@@ -116,18 +118,14 @@ def brake():
 	send_command(globes.BRK_MSG)
 	print "Brake"
 
+global globes
+globes = Global()
 
-
-# while (True):
-# 	# data = ser.read()
-# 	# print data
-
-# 	# 68656c6c6f
-# 	# key = ''.join(chr(x) for x in [0x68, 0x65, 0x6c, 0x6c, 0x6f])
-# 	key = ''.join(x for x in ['h', 'e', 'l', 'l', 'o'])
-# 	# print key
-# 	ser.write(key)
-# 	if (ser.inWaiting() > 0):
-# 		data = ser.read()
-# 		print data
-# 	# ser.write(data)
+while (True):
+	if (ser.inWaiting() > 0):
+		time.sleep(0.1)
+		data = ser.read(1)
+		if (data == globes.ACK_MSG):
+			print "ACK"
+		else:
+			print "Not ACK", data

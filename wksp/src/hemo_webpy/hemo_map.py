@@ -98,7 +98,7 @@ class Map:
             i += 1
 
           # add turn back to start
-          p.addTurn([self.start.length, self.start.angle])
+          p.addTurn([n.length, self.start.angle])
 
         else:
           p.ccw = False
