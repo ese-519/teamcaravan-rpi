@@ -1,2 +1,2 @@
-hemo_webpy
+hemo_webpy:map_main
 -DCATKIN_DEVEL_PREFIX=/home/ubuntu/hemo_code/new_code/wksp/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/hemo_code/new_code/wksp/install -G Unix Makefiles

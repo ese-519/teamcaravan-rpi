@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "i2c_imu")
+set(i2c_imu_MAINTAINER "Justin Eskesen <justin.eskesen@gmail.com>")
+set(i2c_imu_DEPRECATED "")
+set(i2c_imu_VERSION "0.0.0")
+set(i2c_imu_BUILD_DEPENDS "sensor_msgs" "roscpp" "tf")
+set(i2c_imu_RUN_DEPENDS "sensor_msgs" "roscpp" "tf")
+set(i2c_imu_BUILDTOOL_DEPENDS "catkin")

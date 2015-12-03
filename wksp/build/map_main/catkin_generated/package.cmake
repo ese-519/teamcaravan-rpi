@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "map_main")
+set(map_main_MAINTAINER "ubuntu <ubuntu@todo.todo>")
+set(map_main_DEPRECATED "")
+set(map_main_VERSION "0.0.0")
+set(map_main_BUILD_DEPENDS "roscpp" "std_msgs")
+set(map_main_RUN_DEPENDS "roscpp" "std_msgs")
+set(map_main_BUILDTOOL_DEPENDS "catkin")

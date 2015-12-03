@@ -2,4 +2,4 @@
 source_root_dir = "/home/ubuntu/hemo_code/new_code/wksp/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/opt/ros/indigo".split(';') if "/opt/ros/indigo" != "" else []
+underlay_workspaces = "/home/ubuntu/hemo_code/new_code/wksp/devel;/opt/ros/indigo".split(';') if "/home/ubuntu/hemo_code/new_code/wksp/devel;/opt/ros/indigo" != "" else []

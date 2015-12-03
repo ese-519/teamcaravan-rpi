@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/hemo_code/new_code/wksp/devel
+
+Name: map_main
+Description: Description of map_main
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ubuntu/hemo_code/new_code/wksp/devel/lib 
+Requires: 
