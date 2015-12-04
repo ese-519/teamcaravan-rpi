@@ -216,7 +216,7 @@ class Map:
 
     def getLines(self):
       scale = 30
-      margin = 25
+      margin = 45
       b = self.getBound()
       s = max(abs(b[0]-b[2]), abs(b[1]-b[3])) * scale + 2 * margin
       res = [s]
@@ -238,6 +238,9 @@ def parsePath(p, m):
       curDeg = t[1]
       if (curLoc == p.dest):
         brake()
+
+# def getCurPos():
+#   global curLoc
 
 # parsePath(m.findPath(2), m)
 # parsePath(m.findPath(3), m)

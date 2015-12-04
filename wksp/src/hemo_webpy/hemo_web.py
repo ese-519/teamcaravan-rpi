@@ -12,6 +12,7 @@ contentPath = rootPath + 'static/app/'
 urls = ( 
    '/', 'index',
    '/map', 'mapData',
+   '/pos', 'botPos',
    '/req/(.+)', 'sendRequest',
    '/(css/.+)', 'resource',
    '/(js/.+)', 'resource',
@@ -22,7 +23,8 @@ urls = (
 
 app = web.application(urls, globals())
 
-global m
+global m, destLoc
+destLoc = 1
 m = Map("levine.mp")
 
 class index:
@@ -30,6 +32,24 @@ class index:
       with open (contentPath + 'index.html') as myfile:
         data = myfile.read()
         return data
+
+class botPos:
+    global curLoc, destLoc
+
+    def GET(self):
+        m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+        c = m.getLines()
+        s = c[curLoc]
+        d = c[destLoc]
+        res_dic = {}
+
+        if (c != None):
+            res_dic["x"] = s[0]
+            res_dic["y"] = s[1]
+            res_dic["x2"] = d[0]
+            res_dic["y2"] = d[1]
+
+        return json.dumps(res_dic, sort_keys=True)
 
 class mapData:
     def GET(self):
@@ -40,8 +60,8 @@ class mapData:
         idx = 1;
         #{"tasks": {"1": {"idx": "1", "name": "one thing"}, "2": {"idx": "2", "name": "sfsdf"}, "3": {"idx": "3", "name": "this"}, "4": {"idx": "4", "name": "that?"}}}
 
-        task_dic = {}
-        task_dic["size"] = str(map_line_data[0])
+        res_dic = {}
+        res_dic["size"] = str(map_line_data[0])
 
         for item in map_line_data[1:]:
             line = {  "x1" : str(item[0]),
@@ -53,9 +73,9 @@ class mapData:
             dic[str(idx)] = line
             idx += 1
             
-            task_dic["lines"] = dic
+            res_dic["lines"] = dic
 
-        return json.dumps(task_dic, sort_keys=True)
+        return json.dumps(res_dic, sort_keys=True)
 
 class sendRequest:
   def POST(self, dest):
