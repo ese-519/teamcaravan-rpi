@@ -121,11 +121,11 @@ def brake():
 global globes
 globes = Global()
 
-while (True):
-	if (ser.inWaiting() > 0):
-		time.sleep(0.1)
-		data = ser.read(1)
-		if (data == globes.ACK_MSG):
-			print "ACK"
-		else:
-			print "Not ACK", data
+# while (True):
+# 	if (ser.inWaiting() > 0):
+# 		time.sleep(0.1)
+# 		data = ser.read(1)
+# 		if (data == globes.ACK_MSG):
+# 			print "ACK"
+# 		else:
+# 			print "Not ACK", data

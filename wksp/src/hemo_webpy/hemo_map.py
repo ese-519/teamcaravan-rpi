@@ -4,6 +4,10 @@ import os.path
 import math
 from hemo_serial import *
 
+global curLoc, curDeg
+curLoc = 1
+curDeg = 0
+
 def rectangle_contains(p1, p2, p_test):
     in_x = (p1[0] <= p_test[0] and p_test[0] <= p2[0]) or (p1[0] >= p_test[0] and p_test[0] >= p2[0])
     in_y = (p1[1] <= p_test[1] and p_test[1] <= p2[1]) or (p1[1] >= p_test[1] and p_test[1] >= p2[1])
@@ -120,6 +124,10 @@ class Map:
         self.prog = off/start.length
         self.forward = True
         self.hallways.append(self.start)
+
+        global curLoc, curDeg
+        curLoc = self.start.s_id
+        curDeg = self.start.angle
     
     def addHallway(self, hlwy):
         for h in self.hallways:
@@ -205,12 +213,18 @@ class Map:
         draw.line(xy, 0, 5) 
       
       im.save(path, "JPEG")
-      
-m = Map("levine.mp")
 
-global curLoc, curDeg
-curLoc = m.start.s_id
-curDeg = m.start.angle
+    def getLines(self):
+      scale = 30
+      margin = 25
+      b = self.getBound()
+      s = max(abs(b[0]-b[2]), abs(b[1]-b[3])) * scale + 2 * margin
+      res = [s]
+
+      for h in self.hallways:
+        res.append([margin + scale * h.start_coords[0], s - (margin + scale * h.start_coords[1]), margin + scale * h.end_coords[0], s - (margin + scale * h.end_coords[1])])
+
+      return res
 
 def parsePath(p, m):
   global curLoc, curDeg
@@ -225,7 +239,7 @@ def parsePath(p, m):
       if (curLoc == p.dest):
         brake()
 
-parsePath(m.findPath(2), m)
+# parsePath(m.findPath(2), m)
 # parsePath(m.findPath(3), m)
 # parsePath(m.findPath(4), m)
 #m.createImage("levine.jpg")

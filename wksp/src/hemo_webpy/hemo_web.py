@@ -7,66 +7,80 @@ import os
 import json
 
 rootPath = '/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/'
-contentPath = rootPath + 'static/'
+contentPath = rootPath + 'static/app/'
         
-urls = (
-    '/', 'Index',
-    '/static/(.*)', 'Images' #this is where the image folder is located....
+urls = ( 
+   '/', 'index',
+   '/map', 'mapData',
+   '/req/(.+)', 'sendRequest',
+   '/(css/.+)', 'resource',
+   '/(js/.+)', 'resource',
+   '/(bower_components/.+)', 'resource',
+   '/(partials/.+)', 'resource',
+   '/(favicon.ico)', 'resource'
 )
 
-### Templates
-t_globals = {
-    'datestr': web.datestr,
-    'json_encode': json.dumps
-}
-render = web.template.render(rootPath + 'templates', base='base', globals=t_globals)
-
-
 app = web.application(urls, globals())
+
+global m
 m = Map("levine.mp")
 
-class Index:
-  def GET(self):
-      """ Show page """  
-      #return render.index(m)
-      s = '\"\{ x1: 0, y1: 0, x2: 100, y2:100 \}\"'
-      return render.index(s)
+class index:
+    def GET(self):
+      with open (contentPath + 'index.html') as myfile:
+        data = myfile.read()
+        return data
 
-class Images:
-    def GET(self,name):
-      with open (contentPath + name) as myfile:
+class mapData:
+    def GET(self):
+        m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+        map_line_data = m.getLines()
+        dic = {}
+
+        idx = 1;
+        #{"tasks": {"1": {"idx": "1", "name": "one thing"}, "2": {"idx": "2", "name": "sfsdf"}, "3": {"idx": "3", "name": "this"}, "4": {"idx": "4", "name": "that?"}}}
+
+        task_dic = {}
+        task_dic["size"] = str(map_line_data[0])
+
+        for item in map_line_data[1:]:
+            line = {  "x1" : str(item[0]),
+                      "y1" : str(item[1]),
+                      "x2" : str(item[2]),
+                      "y2" : str(item[3])
+            }
+
+            dic[str(idx)] = line
+            idx += 1
+            
+            task_dic["lines"] = dic
+
+        return json.dumps(task_dic, sort_keys=True)
+
+class sendRequest:
+  def POST(self, dest):
+    # print dest
+    ROS_INFO(dest);
+
+class resource:
+  def GET(self, url):
+    with open (contentPath + url) as myfile:
             data = myfile.read()
             return data
-    
-    
-    
-#        with open(os.path.join(contentPath, name), 'wb') as f:
-#          return f
-'''
-        ext = name.split(".")[-1] # Gather extension
 
-        cType = {
-            "png":"images/png",
-            "jpg":"images/jpeg",
-            "gif":"images/gif",
-            "ico":"images/x-icon"            }
-
-        return open(contentPath+'/%s'%name,"rb").read() # Notice 'rb' for reading images
-        if name in os.listdir(contentPath):  # Security
-            web.header("Content-Type", cType[ext]) # Set the Header
-            return open(contentPath+'/%s'%name,"rb").read() # Notice 'rb' for reading images
-        else:
-            raise web.notfound()
-'''
+def ROS_INFO(s):
+    rospy.loginfo(s)
 
 def start():
 
     rospy.init_node('hemo_webpy')
+
+    ROS_INFO("hemo_webpy STARTED")
 
     app.run()
     
     rospy.spin();        
 
 if __name__ == "__main__":
-    #app.run()
+    # app.run()
     start()
