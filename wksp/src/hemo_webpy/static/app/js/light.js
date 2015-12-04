@@ -9,7 +9,8 @@
 
   function lightCtrl($scope, $http, $interval, $location) {
   
-    var baseUrl = "http://192.168.1.14:8080"
+    // var baseUrl = "http://192.168.1.14:8080"
+    var baseUrl = "http://10.251.85.58:8080"
 
     $scope.colors = [];
 
