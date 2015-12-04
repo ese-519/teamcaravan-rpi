@@ -8,6 +8,24 @@ global curLoc, curDeg
 curLoc = 1
 curDeg = 0
 
+class Job:
+    def __init__(self, job_type, val):
+        self.type = job_type
+        self.val = val
+
+    def send(self):
+        if (self.type == 'f'):
+          moveForward(self.val)
+
+        elif (self.type == 'l'):
+          turnLeft(self.val)
+
+        elif (self.type == 's'):
+          brake()
+
+        elif (self.type == 'b'):
+          brake()
+
 def rectangle_contains(p1, p2, p_test):
     in_x = (p1[0] <= p_test[0] and p_test[0] <= p2[0]) or (p1[0] >= p_test[0] and p_test[0] >= p2[0])
     in_y = (p1[1] <= p_test[1] and p_test[1] <= p2[1]) or (p1[1] >= p_test[1] and p_test[1] >= p2[1])
@@ -226,18 +244,18 @@ class Map:
 
       return res
 
-def parsePath(p, m):
-  global curLoc, curDeg
+# def parsePath(p, m):
+#   global curLoc, curDeg
 
-  for t in p.turns:
-      curLoc += 1
-      if (curLoc > len(m.hallways)):
-        curLoc = 1
-      moveForward(t[0])
-      turnLeft(t[1] - curDeg)
-      curDeg = t[1]
-      if (curLoc == p.dest):
-        brake()
+#   for t in p.turns:
+#       curLoc += 1
+#       if (curLoc > len(m.hallways)):
+#         curLoc = 1
+#       moveForward(t[0])
+#       turnLeft(t[1] - curDeg)
+#       curDeg = t[1]
+#       if (curLoc == p.dest):
+#         brake()
 
 # def getCurPos():
 #   global curLoc

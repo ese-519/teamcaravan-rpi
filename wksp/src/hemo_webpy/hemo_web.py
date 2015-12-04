@@ -5,6 +5,8 @@ import web
 from hemo_map import *
 import os
 import json
+import threading
+from Queue import *
 
 rootPath = '/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/'
 contentPath = rootPath + 'static/app/'
@@ -23,9 +25,11 @@ urls = (
 
 app = web.application(urls, globals())
 
-global m, destLoc
+global m, destLoc, inTrip, jobQueue, curJob
+inTrip = False
 destLoc = 1
-m = Map("levine.mp")
+jobQueue = Queue()
+m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
 
 class index:
     def GET(self):
@@ -34,10 +38,11 @@ class index:
         return data
 
 class botPos:
-    global curLoc, destLoc
+    global curLoc, destLoc, m
 
     def GET(self):
-        m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+        global curLoc, destLoc, m
+        # m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
         c = m.getLines()
         s = c[curLoc]
         d = c[destLoc]
@@ -53,7 +58,8 @@ class botPos:
 
 class mapData:
     def GET(self):
-        m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+        global m
+        # m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
         map_line_data = m.getLines()
         dic = {}
 
@@ -78,15 +84,89 @@ class mapData:
         return json.dumps(res_dic, sort_keys=True)
 
 class sendRequest:
+  global curLoc, destLoc, inTrip
+
   def POST(self, dest):
+    global curLoc, destLoc, inTrip
     # print dest
-    ROS_INFO(dest);
+    if (dest != curLoc and not inTrip):
+        inTrip = True
+        ROS_INFO(dest);
+        startTrip(dest)
 
 class resource:
   def GET(self, url):
     with open (contentPath + url) as myfile:
             data = myfile.read()
             return data
+
+def tripCallback():
+    global curLoc, destLoc, jobQueue, curJob, inTrip
+
+    if (ser.inWaiting() > 0):
+      data = ser.read(1)
+      if (data == globes.ACK_MSG):
+        print "ACK"
+        if (jobQueue.empty()):
+            endTrip()
+        else:
+            curJob = jobQueue.get()
+      else:
+          print "Not ACK", data
+
+    curJob.send()
+
+    if (curJob.type == 's'):
+        callbackDelay = 3
+    else:
+        callbackDelay = 0.1
+
+    if (inTrip):
+        threading.Timer(callbackDelay, tripCallback).start()
+
+#   for t in p.turns:
+#       curLoc += 1
+#       if (curLoc > len(m.hallways)):
+#         curLoc = 1
+#       moveForward(t[0])
+#       turnLeft(t[1] - curDeg)
+#       curDeg = t[1]
+#       if (curLoc == p.dest):
+#         brake()
+
+def startTrip(dest):
+    global jobQueue, curJob, inTrip, destLoc, curDeg, curLoc
+    jobQueue.empty()
+    # m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+    path = m.findPath(dest)
+
+    deg = curDeg
+    loc = curLoc
+    for p in path.turns:
+        jobQueue.put(Job("f", p[0]))
+        jobQueue.put(Job("l", p[1] - deg))
+        deg = p[1]
+
+        loc += 1
+        if (loc > len(m.hallways)):
+            loc = 1
+
+        if loc == dest:
+            jobQueue.put(Job("s", 0))
+
+    jobQueue.put(Job("b", 0))
+
+    curJob = jobQueue.get()
+
+    tripCallback()
+    inTrip = True
+    destLoc = int(dest)
+
+def endTrip():
+    global inTrip, curLoc
+    inTrip = False
+    brake()
+    assert(curLoc == 1)    
 
 def ROS_INFO(s):
     rospy.loginfo(s)
