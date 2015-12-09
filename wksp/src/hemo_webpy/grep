@@ -1,0 +1,101 @@
+UID        PID  PPID  C STIME TTY      STAT   TIME CMD
+root         1     0  0 01:21 ?        Ss     0:04 /sbin/init
+root         2     0  0 01:21 ?        S      0:00 [kthreadd]
+root         3     2  0 01:21 ?        S      0:00 [ksoftirqd/0]
+root         5     2  0 01:21 ?        S<     0:00 [kworker/0:0H]
+root         6     2  0 01:21 ?        S      0:00 [kworker/u8:0]
+root         7     2  0 01:21 ?        S      0:00 [rcu_preempt]
+root         8     2  0 01:21 ?        S      0:00 [rcu_sched]
+root         9     2  0 01:21 ?        S      0:00 [rcu_bh]
+root        10     2  0 01:21 ?        S      0:00 [migration/0]
+root        11     2  0 01:21 ?        S      0:00 [watchdog/0]
+root        12     2  0 01:21 ?        S      0:00 [watchdog/1]
+root        13     2  0 01:21 ?        S      0:00 [migration/1]
+root        14     2  0 01:21 ?        S      0:00 [ksoftirqd/1]
+root        16     2  0 01:21 ?        S<     0:00 [kworker/1:0H]
+root        17     2  0 01:21 ?        S      0:00 [watchdog/2]
+root        18     2  0 01:21 ?        S      0:00 [migration/2]
+root        19     2  0 01:21 ?        S      0:00 [ksoftirqd/2]
+root        21     2  0 01:21 ?        S<     0:00 [kworker/2:0H]
+root        22     2  0 01:21 ?        S      0:00 [watchdog/3]
+root        23     2  0 01:21 ?        S      0:00 [migration/3]
+root        24     2  0 01:21 ?        S      0:00 [ksoftirqd/3]
+root        25     2  0 01:21 ?        S      0:00 [kworker/3:0]
+root        26     2  0 01:21 ?        S<     0:00 [kworker/3:0H]
+root        27     2  0 01:21 ?        S<     0:00 [khelper]
+root        28     2  0 01:21 ?        S      0:00 [kdevtmpfs]
+root        29     2  0 01:21 ?        S<     0:00 [netns]
+root        30     2  0 01:21 ?        S<     0:00 [perf]
+root        31     2  0 01:21 ?        S      0:00 [khungtaskd]
+root        32     2  0 01:21 ?        S<     0:00 [writeback]
+root        33     2  0 01:21 ?        SN     0:00 [ksmd]
+root        35     2  0 01:21 ?        S<     0:00 [crypto]
+root        36     2  0 01:21 ?        S<     0:00 [kintegrityd]
+root        37     2  0 01:21 ?        S<     0:00 [bioset]
+root        38     2  0 01:21 ?        S<     0:00 [kblockd]
+root        39     2  0 01:21 ?        S<     0:00 [devfreq_wq]
+root        40     2  0 01:21 ?        S<     0:00 [rpciod]
+root        41     2  0 01:21 ?        S      0:00 [kswapd0]
+root        42     2  0 01:21 ?        S      0:00 [fsnotify_mark]
+root        43     2  0 01:21 ?        S      0:00 [ecryptfs-kthrea]
+root        44     2  0 01:21 ?        S<     0:00 [nfsiod]
+root        54     2  0 01:21 ?        S<     0:00 [kthrotld]
+root        55     2  0 01:21 ?        S      0:00 [kworker/1:1]
+root        56     2  0 01:21 ?        S<     0:00 [VCHIQ-0]
+root        57     2  0 01:21 ?        S<     0:00 [VCHIQr-0]
+root        58     2  0 01:21 ?        S<     0:00 [VCHIQs-0]
+root        59     2  0 01:21 ?        S<     0:00 [iscsi_eh]
+root        60     2  0 01:21 ?        S<     0:00 [dwc_otg]
+root        61     2  0 01:21 ?        S<     0:00 [DWC Notificatio]
+root        63     2  0 01:21 ?        S<     0:00 [ipv6_addrconf]
+root        64     2  0 01:21 ?        S      0:00 [VCHIQka-0]
+root        65     2  0 01:21 ?        S<     0:00 [SMIO]
+root        66     2  0 01:21 ?        S<     0:00 [deferwq]
+root        67     2  0 01:21 ?        S      0:00 [kworker/u8:2]
+root        68     2  0 01:21 ?        S      0:00 [mmcqd/0]
+root        69     2  0 01:21 ?        S<     0:00 [kworker/0:1H]
+root        70     2  0 01:21 ?        S<     0:00 [kworker/1:1H]
+root        71     2  0 01:21 ?        S      0:00 [jbd2/mmcblk0p2-]
+root        72     2  0 01:21 ?        S<     0:00 [ext4-rsv-conver]
+root        74     2  0 01:21 ?        S      0:00 [kworker/2:1]
+root        80     2  0 01:21 ?        S      0:00 [kworker/3:1]
+root        94     2  0 01:21 ?        S<     0:00 [kworker/3:1H]
+root       157     2  0 01:21 ?        S<     0:00 [kworker/2:1H]
+root       216     1  0 01:21 ?        S      0:00 upstart-udev-bridge --daemon
+root       220     1  0 01:21 ?        Ss     0:00 /lib/systemd/systemd-udevd --daemon
+root       246     2  0 01:21 ?        S<     0:00 [bcm2708_spi.0]
+root       261     2  0 01:21 ?        S<     0:00 [cfg80211]
+message+   430     1  0 01:21 ?        Ss     0:00 dbus-daemon --system --fork
+root       494     1  0 01:21 ?        Ss     0:00 /lib/systemd/systemd-logind
+syslog     526     1  0 01:21 ?        Ssl    0:00 rsyslogd
+root       565     1  0 01:21 ?        S      0:00 upstart-file-bridge --daemon
+root       566     1  0 01:21 ?        S      0:00 upstart-socket-bridge --daemon
+root       621     1  0 01:21 ?        Ss     0:00 dhclient -1 -v -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases eth0
+root       681     1  0 01:21 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+root       683     1  0 01:21 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+root       686     1  0 01:21 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+root       687     1  0 01:21 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+root       689     1  0 01:21 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+root       711     1  0 01:21 ?        Ss     0:00 /usr/sbin/irqbalance
+root       716     1  0 01:21 ?        Ss     0:00 cron
+root       770     1  0 01:21 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+root       785     2  0 01:22 ?        S      0:00 [kauditd]
+root       913     2  0 01:33 ?        S      0:00 [RTW_CMD_THREAD]
+root       925     1  0 01:33 ?        Ss     0:00 /sbin/wpa_supplicant -s -B -P /var/run/wpa_supplicant.wlan0.pid -i wlan0 -D wext -c /etc/wpa_supplicant/wpa_supplicant.conf
+root       933     2  0 01:33 ?        S      0:00 [kworker/1:2]
+root       962     1  0 01:33 ?        Ss     0:00 dhclient -1 -v -pf /run/dhclient.wlan0.pid -lf /var/lib/dhcp/dhclient.wlan0.leases wlan0
+root      1017     1  0 01:33 ?        Ss     0:00 /usr/sbin/sshd -D
+root      1046  1017  0 01:33 ?        Ss     0:00 sshd: ubuntu [priv] 
+root      1055     2  0 01:33 ?        S      0:00 [kworker/2:2]
+ubuntu    1065  1046  0 01:33 ?        S      0:00 sshd: ubuntu@pts/0  
+ubuntu    1066  1065  0 01:33 pts/0    Ss     0:00 -bash LANG=C USER=ubuntu LOGNAME=ubuntu HOME=/home/ubuntu PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games MAIL=/var/mail/ubuntu SHELL=/bin/bash SSH_CLIENT=192.168.1.8 49771 22 SSH_CONNECTION=192.168.1.8 49771 192.168.1.14 22 SSH_TTY=/dev/pts/0 TERM=xterm-256color XDG_SESSION_ID=2 XDG_RUNTIME_DIR=/run/user/1000 LC_ALL=C LANGUAGE=C LC_MESSAGES=POSIX
+root      1130  1017  0 01:34 ?        Ss     0:00 sshd: ubuntu [priv] 
+ubuntu    1148  1130  0 01:34 ?        S      0:00 sshd: ubuntu@notty  
+ubuntu    1149  1148  0 01:34 ?        Ss     0:00 /usr/lib/openssh/sftp-server XDG_SESSION_ID=3 SHELL=/bin/bash SSH_CLIENT=192.168.1.8 49781 22 LC_ALL=C USER=ubuntu MAIL=/var/mail/ubuntu PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games LC_MESSAGES=POSIX PWD=/home/ubuntu LANG=C SHLVL=1 HOME=/home/ubuntu LANGUAGE=C LOGNAME=ubuntu SSH_CONNECTION=192.168.1.8 49781 192.168.1.14 22 XDG_RUNTIME_DIR=/run/user/1000 _=/usr/lib/openssh/sftp-server
+root      1150  1017  0 01:35 ?        Ss     0:00 sshd: ubuntu [priv] 
+ubuntu    1168  1150  0 01:35 ?        S      0:00 sshd: ubuntu@notty  
+ubuntu    1169  1168  0 01:35 ?        Ss     0:00 /usr/lib/openssh/sftp-server XDG_SESSION_ID=4 SHELL=/bin/bash SSH_CLIENT=192.168.1.8 49791 22 LC_ALL=C USER=ubuntu MAIL=/var/mail/ubuntu PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games LC_MESSAGES=POSIX PWD=/home/ubuntu LANG=C SHLVL=1 HOME=/home/ubuntu LANGUAGE=C LOGNAME=ubuntu SSH_CONNECTION=192.168.1.8 49791 192.168.1.14 22 XDG_RUNTIME_DIR=/run/user/1000 _=/usr/lib/openssh/sftp-server
+root      1170     2  0 01:38 ?        S      0:00 [kworker/0:2]
+root      1181     2  0 01:44 ?        S      0:00 [kworker/0:1]
+root      1182     2  0 01:50 ?        S      0:00 [kworker/0:0]
+ubuntu    1187  1066  0 01:51 pts/0    R+     0:00 ps -ef wext XDG_SESSION_ID=2 TERM=xterm-256color SHELL=/bin/bash ROS_ROOT=/opt/ros/indigo/share/ros SSH_CLIENT=192.168.1.8 49771 22 ROS_PACKAGE_PATH=/home/ubuntu/hemo_code/new_code/wksp/src:/opt/ros/indigo/share:/opt/ros/indigo/stacks ROS_MASTER_URI=http://localhost:11311 OLDPWD=/home/ubuntu/hemo_code/new_code/wksp/src SSH_TTY=/dev/pts/0 LC_ALL=C USER=ubuntu LD_LIBRARY_PATH=/home/ubuntu/hemo_code/new_code/wksp/devel/lib:/home/ubuntu/hemo_code/new_code/wksp/devel/lib/arm-linux-gnueabihf:/opt/ros/indigo/lib/arm-linux-gnueabihf:/opt/ros/indigo/lib LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36: CPATH=/home/ubuntu/hemo_code/new_code/wksp/devel/include:/opt/ros/indigo/include MAIL=/var/mail/ubuntu PATH=/home/ubuntu/hemo_code/new_code/wksp/devel/bin:/opt/ros/indigo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games LC_MESSAGES=POSIX PWD=/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy LANG=C ROSLISP_PACKAGE_DIRECTORIES=/home/ubuntu/hemo_code/new_code/wksp/devel/share/common-lisp SHLVL=1 HOME=/home/ubuntu ROS_DISTRO=indigo LANGUAGE=C PYTHONPATH=/home/ubuntu/hemo_code/new_code/wksp/devel/lib/python2.7/dist-packages:/opt/ros/indigo/lib/python2.7/dist-packages LOGNAME=ubuntu SSH_CONNECTION=192.168.1.8 49771 192.168.1.14 22 PKG_CONFIG_PATH=/home/ubuntu/hemo_code/new_code/wksp/devel/lib/pkgconfig:/home/ubuntu/hemo_code/new_code/wksp/devel/lib/arm-linux-gnueabihf/pkgconfig:/opt/ros/indigo/lib/arm-linux-gnueabihf/pkgconfig:/opt/ros/indigo/lib/pkgconfig LESSOPEN=| /usr/bin/lesspipe %s CMAKE_PREFIX_PATH=/home/ubuntu/hemo_code/new_code/wksp/devel:/opt/ros/indigo XDG_RUNTIME_DIR=/run/user/1000 LESSCLOSE=/usr/bin/lesspipe %s %s ROS_ETC_DIR=/opt/ros/indigo/etc/ros _=/bin/ps

@@ -64,7 +64,6 @@ class mapData:
         dic = {}
 
         idx = 1;
-        #{"tasks": {"1": {"idx": "1", "name": "one thing"}, "2": {"idx": "2", "name": "sfsdf"}, "3": {"idx": "3", "name": "this"}, "4": {"idx": "4", "name": "that?"}}}
 
         res_dic = {}
         res_dic["size"] = str(map_line_data[0])
@@ -89,7 +88,12 @@ class sendRequest:
   def POST(self, dest):
     global curLoc, destLoc, inTrip
     # print dest
-    if (dest != curLoc and not inTrip):
+
+    if (dest == 'q'):
+        ROS_INFO("Terminating trip")
+        endTrip()
+
+    elif (int(dest) != curLoc and not inTrip):
         inTrip = True
         ROS_INFO(dest);
         startTrip(dest)
@@ -101,18 +105,22 @@ class resource:
             return data
 
 def tripCallback():
-    global curLoc, destLoc, jobQueue, curJob, inTrip
+    global curLoc, destLoc, jobQueue, curJob, inTrip, m
 
     if (ser.inWaiting() > 0):
       data = ser.read(1)
       if (data == globes.ACK_MSG):
         print "ACK"
+
+        if curJob.type == 'f':
+            curLoc = (curLoc + 1)%len(m.hallways)
+
         if (jobQueue.empty()):
             endTrip()
         else:
             curJob = jobQueue.get()
       else:
-          print "Not ACK", data
+        print "Not ACK", data
 
     curJob.send()
 
@@ -136,14 +144,33 @@ def tripCallback():
 
 def startTrip(dest):
     global jobQueue, curJob, inTrip, destLoc, curDeg, curLoc
-    jobQueue.empty()
-    # m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
+    
+    while (not jobQueue.empty()):
+        jobQueue.get()
+
+    curLoc = 1
+    m = Map("/home/ubuntu/hemo_code/new_code/wksp/src/hemo_webpy/levine.mp")
     path = m.findPath(dest)
+
+    doors = m.doors
 
     deg = curDeg
     loc = curLoc
+
     for p in path.turns:
-        jobQueue.put(Job("f", p[0]))
+        distance = p[0]
+        hasDoor = False
+        for d in doors:
+            if (d[0] == loc):
+                hasDoor = True
+                distance = d[1]
+
+        if hasDoor:
+            jobQueue.put(Job("d", distance))
+            jobQueue.put(Job("f", p[0] - distance))
+        else:
+            jobQueue.put(Job("f", distance))
+
         jobQueue.put(Job("l", p[1] - deg))
         deg = p[1]
 
@@ -157,29 +184,27 @@ def startTrip(dest):
     jobQueue.put(Job("b", 0))
 
     curJob = jobQueue.get()
-
     tripCallback()
     inTrip = True
     destLoc = int(dest)
 
 def endTrip():
-    global inTrip, curLoc
+    global inTrip, curLoc, destLoc
     inTrip = False
+    destLoc = curLoc
     brake()
-    assert(curLoc == 1)    
 
 def ROS_INFO(s):
     rospy.loginfo(s)
 
 def start():
 
-    rospy.init_node('hemo_webpy')
+    # rospy.init_node('hemo_webpy')
 
-    ROS_INFO("hemo_webpy STARTED")
+    # ROS_INFO("hemo_webpy STARTED")
 
     app.run()
-    
-    rospy.spin();        
+    # rospy.spin();        
 
 if __name__ == "__main__":
     # app.run()

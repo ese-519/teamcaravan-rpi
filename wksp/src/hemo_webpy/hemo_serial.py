@@ -19,7 +19,7 @@ class Global:
 		self.ACK_MSG = '5'
 		self.TURN_MSG = '6'
 		self.FWD_MSG = '7'
-		self.BWD_MSG = '8'
+		self.DOOR_MSG = '8'
 		self.BRK_MSG = '9'
 		
 		self.INFO_OSB = '5'
@@ -85,6 +85,11 @@ def send_command(msg_type, vel=0):
 	b[1+off] = chr(int(vel)%10 + 48)
 	b[2+off] = chr(vel-int(vel) + 48)
 	send_command_with_data(msg_type, b)	
+
+def sendDoor(dist):
+	global globes
+	send_command(globes.DOOR_MSG, dist)
+	print "Door: ", dist
 
 def moveForward(dist):
 	global globes

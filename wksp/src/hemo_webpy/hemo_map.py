@@ -17,6 +17,9 @@ class Job:
         if (self.type == 'f'):
           moveForward(self.val)
 
+        elif (self.type == 'd'):
+          sendDoor(self.val)
+
         elif (self.type == 'l'):
           turnLeft(self.val)
 
@@ -55,19 +58,23 @@ class Path:
         self.turns.prepend(t)
 
 class hallway:
-    def __init__(self, s_id, length, ang = 0, e_n=[], e_p=[]):
+    def __init__(self, s_id, length, ang = 0, e_n=[], e_p=[], doors=[]):
         self.s_id = s_id
         self.length = length
         self.angle = ang
         self.edges_next = []
         self.start_coords = [0, 0]
         self.end_coords = [0, 0]
+        self.doors = []
         for e in e_n:
           self.edges_next.append(e)
           
         self.edges_prev = []
         for e in e_p:
           self.edges_prev.append(e)
+
+        for d in doors:
+          self.doors.append(d)
 
     def setStartCoords(self, c):
       self.start_coords[0] = int(c[0])
@@ -95,6 +102,7 @@ class Map:
 
     def __init__(self, path):
         self.hallways = []
+        self.doors = []
         self.start = None
         self.curId = None
         self.prog = 0
@@ -171,6 +179,7 @@ class Map:
         content = f.readlines()
         e_n = []
         e_p = []
+        
         for l in content:
           hlwy = l.split()
           if (len(hlwy) < 3):
@@ -182,12 +191,15 @@ class Map:
             e_p.append([int(hlwy[1]), int(hlwy[2])])
           else:
             h = hallway(int(hlwy[0]), int(hlwy[1]), int(hlwy[2]), e_n, e_p)
+            if (len(hlwy) > 3):
+              self.doors.append([int(hlwy[0]), int(hlwy[3])])
             if (self.start == None):
               self.addStart(h)
             else:
               self.addHallway(h)
             e_n = []
             e_p = []
+            doors = []
 
       self.getBound()
             
@@ -232,8 +244,20 @@ class Map:
       
       im.save(path, "JPEG")
 
+    def getDoors(self):
+      res = []
+      scale = 6
+      margin = 45
+      b = self.getBound()
+      s = max(abs(b[0]-b[2]), abs(b[1]-b[3])) * scale + 2 * margin
+
+      for h in self.hallways:
+        res.append([margin + scale * h.start_coords[0], s - (margin + scale * h.start_coords[1]), margin + scale * h.end_coords[0], s - (margin + scale * h.end_coords[1])])
+
+      return res
+
     def getLines(self):
-      scale = 30
+      scale = 6
       margin = 45
       b = self.getBound()
       s = max(abs(b[0]-b[2]), abs(b[1]-b[3])) * scale + 2 * margin
@@ -260,7 +284,8 @@ class Map:
 # def getCurPos():
 #   global curLoc
 
-# parsePath(m.findPath(2), m)
+# m = Map("levine.mp")
+# print m.findPath(2)
 # parsePath(m.findPath(3), m)
 # parsePath(m.findPath(4), m)
 #m.createImage("levine.jpg")

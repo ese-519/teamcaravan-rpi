@@ -9,14 +9,23 @@
 
   function lightCtrl($scope, $http, $interval, $location) {
   
-    // var baseUrl = "http://192.168.1.14:8080"
-    var baseUrl = "http://10.251.85.58:8080"
+    var baseUrl = "http://192.168.1.14:8080"
+    // var baseUrl = "http://10.251.85.58:8080"
 
     $scope.colors = [];
 
     $scope.go = function(s) {
       $location.path(s);
     }
+
+    $scope.stopCmd = function (){
+      
+      $http.post(baseUrl + "/req/q").success(function() {
+            console.log('success');
+        }).error(function() {
+            console.log('error');
+        });
+    };
 
     $scope.sendDest = function (){
       var custom = document.getElementById("destInput").value;
@@ -34,7 +43,7 @@
 
       ctx.fillStyle = 'black';
       ctx.strokeStyle = 'black';
-      ctx.fillText(text.toString, x1 + 5, y1 + 1);
+      // ctx.fillText(text.toString(), x1 + 5, y1 + 1);
 
       ctx.beginPath();
       ctx.moveTo(x1, y1);
